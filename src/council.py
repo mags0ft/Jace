@@ -3,7 +3,7 @@ This file contains the actual problem-solving logic for interacting with the "co
 """
 
 from config import APPROVAL_MESSAGE, MAX_PASSES, Prompts
-from util import prompt_model
+from util import prompt_model, remove_finalism
 from log import logger
 
 
@@ -48,9 +48,11 @@ def consult_council_with_prompt(
                 },
             )
 
-        current_solution = prompt_model(
-            solution_proposal_model,
-            solution_finding_history,
+        current_solution = remove_finalism(
+            prompt_model(
+                solution_proposal_model,
+                solution_finding_history,
+            )
         )
 
         solution_finding_history.append(
@@ -81,9 +83,9 @@ def consult_council_with_prompt(
                 everyone_approves = False
                 criticisms.append(response)
 
-                logger.info(f"criticism by {reviewer}: \n\n {response}")
+                logger.info(f"criticism by {reviewer}: \n\n{response}")
             else:
-                logger.info(f"approval by {reviewer}")
+                logger.info(f"approval by {reviewer}: {response}")
 
         if everyone_approves:
             break

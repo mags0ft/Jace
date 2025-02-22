@@ -33,7 +33,7 @@ Another member proposed the following solution. Please review said solution \
 - don't hesitate to criticize - and, if applicable, propose changes.
 
 If you are okay with the solution, say the words "{APPROVAL_MESSAGE}" to the \
-council."""
+council. In that case, you don't need to give a full explanation again."""
 
     post_review_changes_needed: str = """ The council is not yet fully \
 satisfied with this solution. Member(s) have answered with the following \
@@ -42,7 +42,8 @@ comments:
 %s
 
 Make according changes to your solution proposal, but write down the \
-complete proposal."""
+complete proposal. Do not label it with something like \"Final thoughts\" \
+or anything else suggesting it's final, because it may not be yet."""
 
     post_review_okay: str = """The council is fully satisfied with this \
 solution. To finish up, summarize the solution and - if you deem this \

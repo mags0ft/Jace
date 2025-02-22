@@ -16,6 +16,29 @@ def remove_thinking_part(text: str) -> str:
     return text
 
 
+def remove_finalism(text: str) -> str:
+    """
+    Removes "finalism"-like phrases that make a work-in-progress-solution
+    appear like it's final already.
+    """
+
+    FINALISM_PHRASES: "list[str]" = [
+        "final thoughts",
+        "final result",
+        "final solution",
+        "final conclusion",
+        "final answer",
+    ]
+
+    for phrase in FINALISM_PHRASES:
+        text = text.replace(phrase, "")
+        text = text.replace(phrase.upper(), "")
+        text = text.replace(phrase.title(), "")
+        text = text.replace(phrase.capitalize(), "")
+
+    return text
+
+
 def prompt_model(
     model_name: str, prompts: "list[dict[str, str]]", remove_thinking: bool = True
 ) -> str:

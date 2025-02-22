@@ -2,7 +2,7 @@
 
 Jace is a method I call "council of models" that makes several LLMs discuss with each other about a problem or prompt given by the user to reflect on different points of view.
 
-This makes you able to mix many different LLMs, helping to reduce hallucination.
+This makes you able to mix many different LLMs, helping to reduce hallucination and somewhat mitigating censorship.
 
 ## How it works
 
