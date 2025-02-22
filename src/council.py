@@ -8,7 +8,10 @@ from log import logger
 
 
 def consult_council_with_prompt(
-    prompt: str, solution_proposal_model: str = "", reviewer_models: "list[str]" = []
+    prompt: str,
+    solution_proposal_model: str = "",
+    reviewer_models: "list[str]" = [],
+    update_callback: "any" = None,
 ) -> str:
     logger.info(
         f"begin council session with proposal model {solution_proposal_model}, "
@@ -48,12 +51,22 @@ def consult_council_with_prompt(
                 },
             )
 
-        current_solution = remove_finalism(
-            prompt_model(
-                solution_proposal_model,
-                solution_finding_history,
-            )
+        current_solution = prompt_model(
+            solution_proposal_model,
+            solution_finding_history,
         )
+
+        if update_callback:
+            update_callback(
+                {
+                    "model": solution_proposal_model,
+                    "text": current_solution,
+                    "type": "proposal",
+                    "final": False,
+                }
+            )
+
+        current_solution = remove_finalism(current_solution)
 
         solution_finding_history.append(
             {"role": "assistant", "content": current_solution}
@@ -84,8 +97,28 @@ def consult_council_with_prompt(
                 criticisms.append(response)
 
                 logger.info(f"criticism by {reviewer}: \n\n{response}")
+
+                if update_callback:
+                    update_callback(
+                        {
+                            "model": reviewer,
+                            "text": response,
+                            "type": "criticism",
+                            "final": False,
+                        }
+                    )
             else:
-                logger.info(f"approval by {reviewer}: {response}")
+                logger.info(f"approval by {reviewer}")
+
+                if update_callback:
+                    update_callback(
+                        {
+                            "model": reviewer,
+                            "text": response,
+                            "type": "approval",
+                            "final": False,
+                        }
+                    )
 
         if everyone_approves:
             break
@@ -101,5 +134,15 @@ def consult_council_with_prompt(
     final_response = prompt_model(solution_proposal_model, solution_finding_history)
 
     logger.info(f"success, final response:\n\n{final_response}")
+
+    if update_callback:
+        update_callback(
+            {
+                "model": solution_proposal_model,
+                "text": final_response,
+                "type": "final_answer",
+                "final": True,
+            }
+        )
 
     return final_response
