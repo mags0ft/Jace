@@ -15,7 +15,7 @@ goButton.onclick = () => {
     drawer.style.bottom = "0";
     background.style.backgroundColor = "rgba(0, 0, 0, 0.5)";
 
-    loadingAnimation.style.display = "block";
+    loadingAnimation.style.opacity = 1;
 
     socket.emit("prompt_jace", { prompt: promptInput.value });
 

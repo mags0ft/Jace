@@ -147,6 +147,7 @@ hr {
 
 .answer-element {
     display: flex;
+    align-items: center;
     gap: 12px;
 
     background-color: rgb(247, 247, 247);
@@ -156,6 +157,8 @@ hr {
 
     margin-bottom: 1em;
     animation: spawn-in 750ms ease-out;
+
+    margin-right: .5em;
 }
 
 #loading-animation {
@@ -213,4 +216,6 @@ hr {
 
 .message-text {
     max-width: 80%;
+    align-items: center;
+    flex-grow: 1;
 }
