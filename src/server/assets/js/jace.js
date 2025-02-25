@@ -47,8 +47,7 @@ const modelNames = {
     "llama3.2:3b": "LLaMA (Meta)",
     "llama3.2:1b": "LLaMA (Meta)",
     "gemma:2b": "Gemma (Google)",
-    "gemma:2b": "EuroLLM (EU)",
-    "alibayram/erurollm-9b-instruct": "EuroLLM",
+    "alibayram/erurollm-9b-instruct": "EuroLLM (EU)",
 }
 
 function createAnswerElement(resp) {
