@@ -18,7 +18,11 @@ ENABLE_LOGGING_OUTPUT = True
 
 class Models:
     proposing_model: str = "deepseek-r1:7b"
-    review_models: "list[str]" = ["llama3.2:3b", "gemma:2b"]
+    review_models: "list[str]" = [
+        "llama3.2:3b",
+        "gemma:2b",
+        "alibayram/erurollm-9b-instruct",
+    ]
 
 
 class Prompts:
