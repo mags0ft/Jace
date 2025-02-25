@@ -38,14 +38,17 @@ const imageURLs = {
     "deepseek-r1:7b": "/static/images/models/deepseek.webp",
     "llama3.2:3b": "/static/images/models/llama.webp",
     "llama3.2:1b": "/static/images/models/llama.webp",
-    "gemma:2b": "/static/images/models/gemma.webp"
+    "gemma:2b": "/static/images/models/gemma.webp",
+    "alibayram/erurollm-9b-instruct": "/static/images/models/eurollm.webp",
 };
 
 const modelNames = {
     "deepseek-r1:7b": "DeepSeek",
     "llama3.2:3b": "LLaMA (Meta)",
     "llama3.2:1b": "LLaMA (Meta)",
-    "gemma:2b": "Gemma (Google)"
+    "gemma:2b": "Gemma (Google)",
+    "gemma:2b": "EuroLLM (EU)",
+    "alibayram/erurollm-9b-instruct": "EuroLLM",
 }
 
 function createAnswerElement(resp) {
