@@ -86,11 +86,7 @@ def consult_council_with_prompt(
                 reviewer,
                 [
                     {"role": "system", "content": Prompts.council_review % prompt},
-                    {
-                        "role": "user",
-                        "content": current_solution
-                        + f'\n\nIF EVERYTHING IS FINE IN YOUR OPINION, ANSWER WITH "{APPROVAL_MESSAGE}"!"',
-                    },
+                    {"role": "user", "content": current_solution},
                 ],
                 remove_thinking=True,
             )
