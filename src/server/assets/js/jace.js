@@ -12,18 +12,20 @@ const socket = io();
 goButton.onclick = startCouncilSession;
 
 document.addEventListener("keydown", (e) => {
-    if (e.key.toLowerCase() == "enter") startCouncilSession();
+    switch (e.key.toLowerCase()) {
+        case "enter":
+            startCouncilSession();
+            break;
+        case "escape":
+            newQuestion();
+            break;
+
+        default:
+            break;
+    }
 })
 
-newQuestionButton.onclick = () => {
-    drawer.style.bottom = "-100%";
-    background.style.backgroundColor = "rgba(255, 255, 255, 0.1)";
-    loadingAnimation.style.opacity = 0;
-
-    setTimeout(() => {
-        answers.innerHTML = "";
-    }, 750);
-};
+newQuestionButton.onclick = newQuestion;
 
 const imageURLs = {
     "deepseek-r1:7b": "/static/images/models/deepseek.webp",
@@ -58,6 +60,16 @@ function startCouncilSession() {
     }, 750);
 }
 
+function newQuestion() {
+    drawer.style.bottom = "-100%";
+    background.style.backgroundColor = "rgba(255, 255, 255, 0.1)";
+    loadingAnimation.style.opacity = 0;
+
+    setTimeout(() => {
+        answers.innerHTML = "";
+    }, 750);
+}
+
 function createAnswerElement(resp) {
     const clone = answerTemplate.content.cloneNode(true);
 
@@ -83,9 +95,7 @@ function createAnswerElement(resp) {
 }
 
 socket.on("new_message", (m) => {
-    console.log(m.type, m.final);
     if (m.final || m.type == "final_answer") {
-        console.log("hide!");
         loadingAnimation.style.opacity = 0;
     }
 
