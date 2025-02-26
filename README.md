@@ -1,8 +1,13 @@
 # Jace
 
-Jace is a method I call "council of models" that makes several LLMs discuss with each other about a problem or prompt given by the user to reflect on different points of view.
+![Jace showcase image](./docs/assets/showcase-image.png)
+
+Jace is a method I call "council of models" that makes several LLMs discuss with each other about a problem or prompt given by the user to reflect on different points of view. [Showcase video here](./docs/assets/showcase-small.webm).
 
 This makes you able to mix many different LLMs, helping to reduce hallucination and somewhat mitigating censorship.
+
+> Want to get started?
+> [How to install](./docs/install.md)
 
 ## How it works
 
@@ -39,18 +44,3 @@ The basic steps for problem solving are as following:
 
 > The council is fully satisfied with this solution. To finish up, write an address to the user that features this latest, best solution.
 > Also consider mentioning possible pitfalls you learned about during problem solving with the other members, but do not mention the council or the members themselves.
-
-## How to install and run it locally
-
-It's indeed super simple! Doing it on a Unix-based or Unix-agnostic system would be best, however.
-
-First, make sure ollama, python3 and `python-venv` is installed. Then...
-
-1. clone the repo: `git clone https://github.com/mags0ft/Jace.git`
-2. open it: `cd Jace`
-3. create a `venv`: `python3 -m venv .venv`
-4. activate the venv: `. ./.venv/bin/activate`
-5. install all dependencies: `pip install -r ./requirements.txt`
-6. to run the server: `python3 ./src/server.py`
-
-Make sure you have all the models listed in `src/config.py` pulled.
