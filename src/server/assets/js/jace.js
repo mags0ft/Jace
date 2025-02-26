@@ -9,20 +9,11 @@ const answerTemplate = document.getElementById("answer-template");
 
 const socket = io();
 
-goButton.onclick = () => {
-    if (promptInput.value.length < 3) return;
+goButton.onclick = startCouncilSession;
 
-    drawer.style.bottom = "0";
-    background.style.backgroundColor = "rgba(0, 0, 0, 0.5)";
-
-    loadingAnimation.style.opacity = 1;
-
-    socket.emit("prompt_jace", { prompt: promptInput.value });
-
-    setTimeout(() => {
-        promptInput.value = "";
-    }, 750);
-};
+document.addEventListener("keydown", (e) => {
+    if (e.key.toLowerCase() == "enter") startCouncilSession();
+})
 
 newQuestionButton.onclick = () => {
     drawer.style.bottom = "-100%";
@@ -50,6 +41,21 @@ const modelNames = {
     "gemma:2b": "Gemma (Google)",
     "mistral:7b": "Mistral",
     "alibayram/erurollm-9b-instruct": "EuroLLM (EU)",
+}
+
+function startCouncilSession() {
+    if (promptInput.value.length < 3) return;
+
+    drawer.style.bottom = "0";
+    background.style.backgroundColor = "rgba(0, 0, 0, 0.5)";
+
+    loadingAnimation.style.opacity = 1;
+
+    socket.emit("prompt_jace", { prompt: promptInput.value });
+
+    setTimeout(() => {
+        promptInput.value = "";
+    }, 750);
 }
 
 function createAnswerElement(resp) {
