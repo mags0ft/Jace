@@ -1,5 +1,6 @@
 """
-This file contains the actual problem-solving logic for interacting with the "council members".
+This file contains the actual problem-solving logic for interacting with the
+"council members".
 """
 
 from config import APPROVAL_MESSAGE, MAX_PASSES, Prompts
@@ -7,25 +8,53 @@ from util import prompt_model, remove_finalism
 from log import logger
 
 
+def send_callback(
+    callback: "any" = None,
+    model: str = "",
+    text: str = "",
+    type_: str = "proposal",
+    final: bool = False,
+) -> None:
+    """
+    Sends a callback to the client.
+    """
+
+    if not callback:
+        return
+
+    callback({"model": model, "text": text, "type": type_, "final": final})
+
+
 def consult_council_with_prompt(
     prompt: str,
-    solution_proposal_model: str = "",
-    reviewer_models: "list[str]" = [],
-    update_callback: "any" = None,
+    proposal_model: str,
+    reviewer_models: "list[str]",
+    callback: "any" = None,
 ) -> str:
+    """
+    The main functionality of Jace - to consult the "council of models" with a
+    prompt or question to be solved. This function takes a prompt, a model to
+    make proposals, a list of models to review said proposals and an optional
+    callback function to send updates about the council session to as
+    arguments.
+    """
+
     logger.info(
-        f"begin council session with proposal model {solution_proposal_model}, "
-        + f'review model(s) {", ".join(reviewer_models)}, prompt "{prompt}"'
+        "begin session with proposal model %s, review model(s) %s, prompt %s",
+        proposal_model,
+        ", ".join(reviewer_models),
+        prompt,
     )
 
-    passes_done: int = 0  # how many times the council has revised
+    passes_done: int = 0  # How many times the council has revised
 
+    # Initialization of the variables used to run the council
     criticisms: "list[str]" = []
     current_solution: str = ""
     solution_finding_history: "list[dict[str, str]]" = []
 
     while passes_done < MAX_PASSES:
-        logger.info(f"pass #{passes_done + 1}")
+        logger.info("pass #%s", passes_done + 1)
 
         # --- SOLUTION FINDING PHASE ---
 
@@ -41,31 +70,26 @@ def consult_council_with_prompt(
 
             for index, criticism in enumerate(criticisms, 1):
                 criticism_summary += (
-                    f"\n\n--- criticism by council member #{index} ---\n{criticism}"
+                    f"\n\n--- criticism by council member #{index} ---\n"
+                    + f"{criticism}"
                 )
 
             solution_finding_history.append(
                 {
                     "role": "user",
-                    "content": Prompts.post_review_changes_needed % criticism_summary,
+                    "content": Prompts.changes_needed % criticism_summary,
                 },
             )
 
         current_solution = prompt_model(
-            solution_proposal_model,
+            proposal_model,
             solution_finding_history,
         )
 
-        if update_callback:
-            update_callback(
-                {
-                    "model": solution_proposal_model,
-                    "text": current_solution,
-                    "type": "proposal",
-                    "final": False,
-                }
-            )
+        send_callback(callback, proposal_model, current_solution)
 
+        # We need to do this after sending the callback - otherwise, output may
+        # look weird to users of the Web UI.
         current_solution = remove_finalism(current_solution)
 
         solution_finding_history.append(
@@ -73,7 +97,9 @@ def consult_council_with_prompt(
         )
 
         logger.info(
-            f"current solution found by {solution_proposal_model}: \n\n{current_solution}"
+            "current solution found by %s: \n\n %s",
+            proposal_model,
+            current_solution,
         )
 
         # -- REVIEW PHASE ---
@@ -82,10 +108,14 @@ def consult_council_with_prompt(
         everyone_approves: bool = True
 
         for reviewer in reviewer_models:
+            # What does this reviewer model think of the proposal?
             response = prompt_model(
                 reviewer,
                 [
-                    {"role": "system", "content": Prompts.council_review % prompt},
+                    {
+                        "role": "system",
+                        "content": Prompts.council_review % prompt,
+                    },
                     {"role": "user", "content": current_solution},
                 ],
                 remove_thinking=True,
@@ -96,31 +126,17 @@ def consult_council_with_prompt(
                 everyone_approves = False
                 criticisms.append(response)
 
-                logger.info(f"criticism by {reviewer}: \n\n{response}")
-
-                if update_callback:
-                    update_callback(
-                        {
-                            "model": reviewer,
-                            "text": response,
-                            "type": "criticism",
-                            "final": False,
-                        }
-                    )
+                logger.info("criticism by %s: \n\n%s", reviewer, response)
+                send_callback(callback, reviewer, response, "criticism")
             else:
-                logger.info(f"approval by {reviewer}")
+                # Perfect! The model approves.
 
-                if update_callback:
-                    update_callback(
-                        {
-                            "model": reviewer,
-                            "text": response,
-                            "type": "approval",
-                            "final": False,
-                        }
-                    )
+                logger.info("approval by %s", reviewer)
+                send_callback(callback, reviewer, response, "approval")
 
         if everyone_approves:
+            # Okay, we're done now! Everyone is fine with the result, so we
+            # can break out of the loop.
             break
 
         passes_done += 1
@@ -131,18 +147,9 @@ def consult_council_with_prompt(
         ]
     )
 
-    final_response = prompt_model(solution_proposal_model, solution_finding_history)
+    final_res = prompt_model(proposal_model, solution_finding_history)
 
-    logger.info(f"success, final response:\n\n{final_response}")
+    logger.info("success, final response:\n\n%s", final_res)
+    send_callback(callback, proposal_model, final_res, "final_answer", True)
 
-    if update_callback:
-        update_callback(
-            {
-                "model": solution_proposal_model,
-                "text": final_response,
-                "type": "final_answer",
-                "final": True,
-            }
-        )
-
-    return final_response
+    return final_res

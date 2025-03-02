@@ -2,6 +2,8 @@
 This file contains all the client-side JavaScript code needed to provide a good experience for Jace.
 */
 
+
+// All image files for the specific models
 const IMAGE_URLS = {
     "deepseek-r1:7b": "/static/images/models/deepseek.webp",
     "llama3.2:3b": "/static/images/models/llama.webp",
@@ -11,6 +13,7 @@ const IMAGE_URLS = {
     "alibayram/erurollm-9b-instruct": "/static/images/models/eurollm.webp",
 };
 
+// Human-readable versions of the model names
 const MODEL_NAMES = {
     "deepseek-r1:7b": "DeepSeek",
     "llama3.2:3b": "LLaMA (Meta)",
@@ -20,6 +23,7 @@ const MODEL_NAMES = {
     "alibayram/erurollm-9b-instruct": "EuroLLM (EU)",
 }
 
+// All elements we want to address in the DOM
 const elements = {
     promptInput: document.getElementById("prompt-input"),
     goButton: document.getElementById("go-button"),
@@ -31,9 +35,12 @@ const elements = {
     answerTemplate: document.getElementById("answer-template"),
 };
 
+// The Socket.IO connection to the server
 const socket = io();
 
 function startCouncilSession() {
+    // Starts a council session for a specific question on the server.
+
     if (elements.promptInput.value.length < 3) return;
 
     elements.drawer.style.bottom = "0";
@@ -41,18 +48,23 @@ function startCouncilSession() {
 
     elements.loadingAnimation.style.opacity = 1;
 
+    // Send prompt to the server via socket
     socket.emit("prompt_jace", { prompt: elements.promptInput.value });
 
+    // After the drawer opens, we can clear the question input field
     setTimeout(() => {
         elements.promptInput.value = "";
     }, 750);
 }
 
 function newQuestion() {
+    // Closes the drawer, so a new question can be asked
+
     elements.drawer.style.bottom = "-100%";
     elements.background.style.backgroundColor = "rgba(255, 255, 255, 0.1)";
     elements.loadingAnimation.style.opacity = 0;
 
+    // Same thing goes for here: we can clear the 
     setTimeout(() => {
         elements.answers.innerHTML = "";
     }, 750);

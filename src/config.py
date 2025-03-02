@@ -2,8 +2,11 @@
 To change the behavior of Jace, modify the variables in this file.
 """
 
-# how many passes of review the council should perform before just pretending
+# How many passes of review the council should perform before just pretending
 # like everyone is okay
+from dataclasses import dataclass
+
+
 MAX_PASSES = 6
 
 # How the termination of your Chain-of-thought model of choice looks like
@@ -15,8 +18,26 @@ APPROVAL_MESSAGE = "Fine, I approve"
 # Whether to print out additional logging info to stdout or a file.
 ENABLE_LOGGING_OUTPUT = True
 
+# Phrases some models may tend to include in their reviewed answers - those
+# hint at the answer being a final, complete version of what the council is
+# working on, even though it may not be done yet. As this might decept other
+# council member LLMs, it's best to remove such phrases from the proposals.
+FINALISM_PHRASES: "list[str]" = [
+    "final thoughts",
+    "final result",
+    "final solution",
+    "final conclusion",
+    "final answer",
+]
 
+
+@dataclass
 class Models:
+    """
+    This class keeps track of all supported Models to allow for easy access
+    across the codebase.
+    """
+
     proposing_model: str = "deepseek-r1:7b"
     review_models: "list[str]" = [
         "llama3.2:3b",
@@ -26,7 +47,12 @@ class Models:
     ]
 
 
+@dataclass
 class Prompts:
+    """
+    Prompts used by Jace to query the LLMs in the council.
+    """
+
     initial_solving: str = """You are member of a council filled with \
 problem solvers. Given the following prompt, try to find an initial solution \
 to it to propose to the council. Find a definitive answer at the end."""
@@ -40,7 +66,7 @@ Another member proposed the following solution. Please review said solution \
 If you are okay with the solution, say the words "{APPROVAL_MESSAGE}" to the \
 council. In that case, you don't need to give a full explanation again."""
 
-    post_review_changes_needed: str = """ The council is not yet fully \
+    changes_needed: str = """ The council is not yet fully \
 satisfied with this solution. Member(s) have answered with the following \
 comments:
 
