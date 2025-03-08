@@ -57,7 +57,7 @@ class Prompts:
 problem solvers. Given the following prompt, try to find an initial solution \
 to it to propose to the council. Find a definitive answer at the end."""
 
-    council_review: str = f""" You are member of a council filled with \
+    council_review: str = f"""You are member of a council filled with \
 problem solvers and you are trying to solve the following prompt: "%s".
 
 Another member proposed the following solution. Please review said solution \
@@ -66,7 +66,7 @@ Another member proposed the following solution. Please review said solution \
 If you are okay with the solution, say the words "{APPROVAL_MESSAGE}" to the \
 council. In that case, you don't need to give a full explanation again."""
 
-    changes_needed: str = """ The council is not yet fully \
+    changes_needed: str = """The council is not yet fully \
 satisfied with this solution. Member(s) have answered with the following \
 comments:
 
