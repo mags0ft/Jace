@@ -4,7 +4,7 @@ To change the behavior of Jace, modify the variables in this file.
 
 # How many passes of review the council should perform before just pretending
 # like everyone is okay
-from dataclasses import dataclass
+from typing import NamedTuple
 
 
 MAX_PASSES = 6
@@ -31,8 +31,7 @@ FINALISM_PHRASES: "list[str]" = [
 ]
 
 
-@dataclass
-class Models:
+class Models(NamedTuple):
     """
     This class keeps track of all supported Models to allow for easy access
     across the codebase.
@@ -43,12 +42,10 @@ class Models:
         "llama3.2:3b",
         "gemma:2b",
         "mistral:7b",
-        # "alibayram/erurollm-9b-instruct",
     ]
 
 
-@dataclass
-class Prompts:
+class Prompts(NamedTuple):
     """
     Prompts used by Jace to query the LLMs in the council.
     """
