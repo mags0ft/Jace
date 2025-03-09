@@ -1,5 +1,7 @@
 # Prompts
 
+These are the (system) prompts used by Jace to make the "council of models"-proof-of-concept possible:
+
 ## Initial system prompt to model A:
 
 > You are member of a council filled with problem solvers. Given the following prompt, try to find an initial solution to it to propose to the council.
