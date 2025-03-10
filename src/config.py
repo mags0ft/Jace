@@ -33,7 +33,7 @@ FINALISM_PHRASES: "list[str]" = [
 
 class Models(NamedTuple):
     """
-    This class keeps track of all supported Models to allow for easy access
+    This class keeps track of all supported models to allow for easy access
     across the codebase.
     """
 
