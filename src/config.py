@@ -4,9 +4,6 @@ To change the behavior of Jace, modify the variables in this file.
 
 # How many passes of review the council should perform before just pretending
 # like everyone is okay
-from typing import NamedTuple
-
-
 MAX_PASSES = 6
 
 # How the termination of your Chain-of-thought model of choice looks like
@@ -31,7 +28,7 @@ FINALISM_PHRASES: "list[str]" = [
 ]
 
 
-class Models(NamedTuple):
+class Models:  # pylint: disable=too-few-public-methods
     """
     This class keeps track of all supported models to allow for easy access
     across the codebase.
@@ -45,7 +42,7 @@ class Models(NamedTuple):
     ]
 
 
-class Prompts(NamedTuple):
+class Prompts:  # pylint: disable=too-few-public-methods
     """
     Prompts used by Jace to query the LLMs in the council.
     """
