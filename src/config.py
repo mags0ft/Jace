@@ -4,7 +4,7 @@ To change the behavior of Jace, modify the variables in this file.
 
 # How many passes of review the council should perform before just pretending
 # like everyone is okay
-from dataclasses import dataclass
+from typing import NamedTuple
 
 
 MAX_PASSES = 6
@@ -31,10 +31,9 @@ FINALISM_PHRASES: "list[str]" = [
 ]
 
 
-@dataclass
-class Models:
+class Models(NamedTuple):
     """
-    This class keeps track of all supported Models to allow for easy access
+    This class keeps track of all supported models to allow for easy access
     across the codebase.
     """
 
@@ -43,12 +42,10 @@ class Models:
         "llama3.2:3b",
         "gemma3:4b",
         "mistral:7b",
-        # "alibayram/erurollm-9b-instruct",
     ]
 
 
-@dataclass
-class Prompts:
+class Prompts(NamedTuple):
     """
     Prompts used by Jace to query the LLMs in the council.
     """
@@ -57,7 +54,7 @@ class Prompts:
 problem solvers. Given the following prompt, try to find an initial solution \
 to it to propose to the council. Find a definitive answer at the end."""
 
-    council_review: str = f""" You are member of a council filled with \
+    council_review: str = f"""You are member of a council filled with \
 problem solvers and you are trying to solve the following prompt: "%s".
 
 Another member proposed the following solution. Please review said solution \
@@ -66,7 +63,7 @@ Another member proposed the following solution. Please review said solution \
 If you are okay with the solution, say the words "{APPROVAL_MESSAGE}" to the \
 council. In that case, you don't need to give a full explanation again."""
 
-    changes_needed: str = """ The council is not yet fully \
+    changes_needed: str = """The council is not yet fully \
 satisfied with this solution. Member(s) have answered with the following \
 comments:
 

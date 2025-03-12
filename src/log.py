@@ -7,7 +7,7 @@ from logging import Logger, Formatter, FileHandler
 from config import ENABLE_LOGGING_OUTPUT
 
 # Create a logger for the Jace application
-logger = Logger("jace-log", 0)
+logger = Logger("jace", 0)
 
 if ENABLE_LOGGING_OUTPUT:
     # Only if we want to actually enable logging output, create and add a

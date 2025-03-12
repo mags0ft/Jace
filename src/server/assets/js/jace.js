@@ -75,12 +75,15 @@ function newQuestion() {
 elements.newQuestionButton.onclick = newQuestion;
 elements.goButton.onclick = startCouncilSession;
 
+// Hotkey support
 document.addEventListener("keydown", (e) => {
     switch (e.key.toLowerCase()) {
         case "enter":
+            // Enter sends the question to the server
             startCouncilSession();
             break;
         case "escape":
+            // Escape closes the answer drawer.
             newQuestion();
             break;
 
@@ -90,6 +93,11 @@ document.addEventListener("keydown", (e) => {
 })
 
 function createAnswerElement(resp) {
+    /*
+    This function creates an answer element from the template inside of index.html.
+    It then renders it onto the drawer.
+    */
+
     const clone = elements.answerTemplate.content.cloneNode(true);
 
     clone.querySelector("#message-model").innerText = MODEL_NAMES[resp.model];
@@ -113,7 +121,10 @@ function createAnswerElement(resp) {
 }
 
 socket.on("new_message", (m) => {
+    // When a new message is retrieved from the council, render it.
+
     if (m.final || m.type == "final_answer") {
+        // If it's a final answer, hide the loading skeleton
         elements.loadingAnimation.style.opacity = 0;
     }
 

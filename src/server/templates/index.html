@@ -8,19 +8,27 @@
     <title>Jace</title>
 
     <link rel="stylesheet" href="/static/css/style.css">
+
+    <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@500&display=swap" rel="stylesheet">
+
+    <!-- Socket.IO and Markdown renderer -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.0.1/socket.io.js"
         integrity="sha512-q/dWJ3kcmjBLU4Qc47E4A9kTB4m3wuTY7vkFJDTZKjTs8jhyGQnaUrxa0Ytd0ssMZhbNua9hE+E7Qv1j+DyZwA=="
         crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+
+    <!-- Website icon -->
     <link rel="shortcut icon" href="/static/images/icon-small.png" type="image/x-icon">
 </head>
 
 <body>
     <main id="main">
         <div class="centered">
+            <!-- Start page -->
+
             <img src="/static/images/icon.png"
                 alt="Icon of Jace: a dark blue-, violet- and orange-colored gradient in a circle." class="jace-icon">
             <h1 class="title-text">
@@ -38,6 +46,8 @@
     </main>
 
     <div id="drawer">
+        <!-- Drawer with the answer text messages inside -->
+
         <h1 class="title-text">
             Answer
         </h1>
@@ -49,6 +59,8 @@
         </div>
 
         <div id="loading-animation">
+            <!-- Skeleton animation -->
+
             <div class="loading-animation-part"></div>
             <div class="loading-animation-part"></div>
             <div class="loading-animation-part short"></div>
@@ -60,6 +72,7 @@
     </div>
 
     <template id="answer-template">
+        <!-- Template for the answer message element to be rendered inside of the drawer -->
         <div class="answer-element" id="answer-element">
             <div class="message-model-part">
                 <img src="/static/images/models/gemma.webp" id="message-image" class="message-image"
