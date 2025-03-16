@@ -17,8 +17,8 @@ const IMAGE_URLS = {
 // Human-readable versions of the model names
 const MODEL_NAMES = {
     "deepseek-r1:7b": "DeepSeek",
-    "llama3.2:3b": "LLaMA (Meta)",
-    "llama3.2:1b": "LLaMA (Meta)",
+    "llama3.2:3b": "Llama (Meta)",
+    "llama3.2:1b": "Llama (Meta)",
     "gemma:2b": "Gemma (Google)",
     "gemma3:4b": "Gemma (Google)",
     "mistral:7b": "Mistral",
