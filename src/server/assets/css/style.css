@@ -255,3 +255,21 @@ hr {
         flex-direction: column;
     }
 }
+
+#centered-main-container {
+    animation: 1500ms cubic-bezier(0.165, 0.84, 0.44, 1) 0s 1 main-container-slide-in;
+}
+
+@keyframes main-container-slide-in {
+    from {
+        opacity: 0;
+        transform: translateY(-2em);
+        filter: blur(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+        filter: blur(0);
+    }
+}
