@@ -74,8 +74,11 @@ function startCouncilSession(question = "") {
     // After the drawer opens, we can clear the question input field
     setTimeout(() => {
         elements.promptInput.value = "";
-        elements.modeIndicator.style.opacity = 0;
     }, 750);
+
+    setTimeout(() => {
+        elements.modeIndicator.style.opacity = 0;
+    }, 1000);
 }
 
 function newQuestion() {
