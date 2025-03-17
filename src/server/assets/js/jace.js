@@ -35,23 +35,41 @@ const elements = {
     answers: document.getElementById("answers"),
     loadingAnimation: document.getElementById("loading-animation"),
     answerTemplate: document.getElementById("answer-template"),
+    modeIndicator: document.getElementById("mode-indicator"),
 };
 
 // The Socket.IO connection to the server
 const socket = io();
 
-function startCouncilSession() {
+// The last prompt that has been made to create a diagram.
+let previousSavedPrompt = "";
+
+function startCouncilSession(question = "") {
     // Starts a council session for a specific question on the server.
 
-    if (elements.promptInput.value.length < 3) return;
+    let prompt = elements.promptInput.value;
+
+    if (typeof question == "string" && question != "") {
+        prompt = question;
+    } else {
+        previousSavedPrompt = prompt;
+    }
+
+    if (prompt.length < 3) return;
 
     elements.drawer.style.bottom = "0";
     elements.background.style.backgroundColor = "rgba(0, 0, 0, 0.5)";
 
     elements.loadingAnimation.style.opacity = 1;
 
-    // Send prompt to the server via socket
-    socket.emit("prompt_jace", { prompt: elements.promptInput.value });
+    if (mentionsDiagram(prompt)) {
+        socket.emit("create_diagram", { prompt: prompt });
+    } else {
+        // Send prompt to the server via socket
+        socket.emit("prompt_jace", {
+            prompt: prompt.replaceAll("/nochart", "")
+        });
+    }
 
     // After the drawer opens, we can clear the question input field
     setTimeout(() => {
@@ -92,6 +110,31 @@ document.addEventListener("keydown", (e) => {
     }
 })
 
+function mentionsDiagram(value) {
+    value = value.toLowerCase();
+
+    let keywords = [
+        "diagram",
+        "chart",
+    ];
+
+    if (value.includes("/nochart")) return false;
+
+    for (let keyword of keywords) {
+        if (value.includes(keyword)) return true;
+    }
+
+    return false;
+}
+
+elements.promptInput.addEventListener("input", (e) => {
+    if (mentionsDiagram(elements.promptInput.value)) {
+        elements.modeIndicator.style.opacity = .65;
+    } else {
+        elements.modeIndicator.style.opacity = 0;
+    }
+})
+
 function createAnswerElement(resp) {
     /*
     This function creates an answer element from the template inside of index.html.
@@ -104,6 +147,12 @@ function createAnswerElement(resp) {
 
     if (resp.type == "approval") {
         clone.querySelector("#message-text").innerText = "approves"
+    } else if (resp.type == "diagram") {
+        let diagram = document.createElement("pre");
+        diagram.classList.add("mermaid");
+        diagram.innerHTML = resp.text;
+
+        clone.querySelector("#message-text").appendChild(diagram);
     } else {
         clone.querySelector("#message-text").innerHTML = marked.parse(resp.text);
     }
@@ -111,12 +160,30 @@ function createAnswerElement(resp) {
     clone.querySelector("#message-image").src = IMAGE_URLS[resp.model];
     clone.querySelector("#answer-element").style.backgroundColor = {
         "proposal": "rgb(250, 250, 250)",
+        "diagram": "rgb(250, 250, 250)",
         "approval": "rgb(214, 255, 209)",
         "criticism": "rgb(255, 217, 217)",
         "final_answer": "rgb(211, 231, 255)"
     }[resp.type];
 
     elements.answers.appendChild(clone);
+
+    if (resp.type == "diagram") {
+        // Render the diagram if necessary:
+        mermaid.run().then(() => {
+            previousSavedPrompt = "";
+        }).catch((_e) => {
+            elements.answers.innerHTML = "";
+
+            // Try again:
+            startCouncilSession(
+                previousSavedPrompt + " Make it simpler. Stick to pure, correct Mermaid syntax. "
+                + "Your last attempt failed to render."
+            );
+        })
+    }
+
+    // Finally, scroll into view:
     elements.answers.children[elements.answers.children.length - 1].scrollIntoView({ behavior: "smooth" })
 }
 

@@ -59,3 +59,20 @@ def prompt_model(
         response_message_text = remove_thinking_part(response_message_text)
 
     return response_message_text.strip()
+
+
+def clean_from_artefacts(code: str):
+    """
+    Removes any code formatting artefacts from the returned answer to ensure
+    Mermaid can render it on the client-side.
+    """
+
+    res = ""
+
+    for line in code.splitlines(keepends=True):
+        if line.startswith("```") or line.endswith("```"):
+            continue
+
+        res += line
+
+    return res

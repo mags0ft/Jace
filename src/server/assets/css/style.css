@@ -273,3 +273,9 @@ hr {
         filter: blur(0);
     }
 }
+
+#mode-indicator {
+    opacity: 0;
+    margin-top: 2em;
+    transition: 500ms ease-in-out;
+}

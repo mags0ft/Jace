@@ -6,7 +6,9 @@ from flask import Flask, render_template
 from flask_socketio import SocketIO, emit
 
 from config import Models
-from council import consult_council_with_prompt
+import config
+from council import consult_council_with_prompt, send_callback
+from util import clean_from_artefacts, prompt_model
 
 
 app = Flask(__name__)
@@ -39,6 +41,36 @@ def handle_incoming_prompt(req):
         Models.proposing_model,
         Models.review_models,
         callback=update_callback,
+    )
+
+
+@socketio.on("create_diagram")
+def handle_incoming_diagram_request(req):
+    """
+    Handling of the incoming Socket.IO requests to solely create diagrams using
+    artificial intelligence.
+    """
+
+    def update_callback(new_message: dict["str", "str"]):
+        emit("new_message", new_message)
+
+    diagram = clean_from_artefacts(
+        prompt_model(
+            config.Models.diagram_model,
+            [
+                {"role": "system", "content": config.Prompts.diagram_creation},
+                {"role": "user", "content": req["prompt"]},
+            ],
+            True,
+        )
+    )
+
+    send_callback(
+        update_callback,
+        config.Models.diagram_model,
+        diagram,
+        "diagram",
+        True,
     )
 
 

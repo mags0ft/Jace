@@ -14,11 +14,12 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@500&display=swap" rel="stylesheet">
 
-    <!-- Socket.IO and Markdown renderer -->
+    <!-- Socket.IO, Mermaid and Markdown renderer -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.0.1/socket.io.js"
         integrity="sha512-q/dWJ3kcmjBLU4Qc47E4A9kTB4m3wuTY7vkFJDTZKjTs8jhyGQnaUrxa0Ytd0ssMZhbNua9hE+E7Qv1j+DyZwA=="
         crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.min.js"></script>
 
     <!-- Website icon -->
     <link rel="shortcut icon" href="/static/images/icon-small.png" type="image/x-icon">
@@ -42,6 +43,10 @@
                 <input type="text" id="prompt-input">
                 <button id="go-button">Go</button>
             </div>
+
+            <p class="hidden" id="mode-indicator">
+                Diagram- and Flowchart mode activated. Type "/nochart" to deactivate.
+            </p>
         </div>
     </main>
 
@@ -79,7 +84,7 @@
                     alt="Image of the model">
                 <span id="message-model" class="message-model">Model name</span>
             </div>
-            <span id="message-text" class="message-text">Text</span>
+            <span id="message-text" class="message-text"></span>
         </div>
     </template>
 
