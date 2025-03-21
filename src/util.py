@@ -2,10 +2,16 @@
 This module contains some simple wrappers, utility functions and more.
 """
 
+import os
 from ollama import chat
 from ollama import ChatResponse
 
-from config import FINALISM_PHRASES, THINK_TERMINATOR
+from config import (
+    FINALISM_PHRASES,
+    THINK_TERMINATOR,
+    LOG_DIRECTORY_NAME,
+    LOG_PATH,
+)
 
 
 def remove_thinking_part(text: str) -> str:
@@ -59,3 +65,16 @@ def prompt_model(
         response_message_text = remove_thinking_part(response_message_text)
 
     return response_message_text.strip()
+
+
+def create_logging_file_if_not_exists() -> None:
+    """
+    Creates a "logs" folder and a "log.txt" file if it does not exist yet.
+    """
+
+    if not os.path.isdir(LOG_DIRECTORY_NAME):
+        os.mkdir(LOG_DIRECTORY_NAME)
+
+    if not os.path.isfile(LOG_PATH):
+        with open(LOG_PATH, "x", encoding="utf-8"):
+            pass
