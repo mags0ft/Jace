@@ -5,7 +5,6 @@ To change the behavior of Jace, modify the variables in this file.
 # How many passes of review the council should perform before just pretending
 # like everyone is okay
 import os
-from typing import NamedTuple
 
 
 MAX_PASSES = 6
