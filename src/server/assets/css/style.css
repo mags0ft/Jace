@@ -83,15 +83,22 @@ a {
 
 #go-button {
     border: none;
-    border: 2px solid rgb(3, 61, 255);
-    background-color: rgb(3, 61, 255);
+    background: rgb(3, 148, 255);
+    background: linear-gradient(204deg, rgba(3, 148, 255, 1) 0%, rgba(3, 61, 255, 1) 50%, rgb(66, 3, 255) 100%);
     margin-left: 8px;
     border-radius: 10px 22px 22px 10px;
     color: white;
     cursor: pointer;
+    padding: 15px;
     padding-left: 1.5em;
     padding-right: 1.5em;
     box-shadow: 0 7px 15px rgba(3, 61, 255, 0.4);
+    transition: 350ms cubic-bezier(0.19, 1, 0.22, 1);
+}
+
+#go-button:active {
+    filter: brightness(0.75);
+    box-shadow: none;
 }
 
 #drawer {
@@ -120,8 +127,8 @@ a {
     text-decoration: none;
     padding: 16px;
     border: none;
-    border: 2px solid rgb(3, 61, 255);
-    background-color: rgb(3, 61, 255);
+    background: rgb(3, 148, 255);
+    background: linear-gradient(204deg, rgba(3, 148, 255, 1) 0%, rgba(3, 61, 255, 1) 50%, rgba(108, 3, 255, 1) 100%);
     margin-left: 8px;
     border-radius: 22px;
     color: white;
@@ -132,6 +139,13 @@ a {
 
     position: absolute;
     bottom: 25px;
+
+    transition: 350ms cubic-bezier(0.19, 1, 0.22, 1);
+}
+
+#new-question-button:active {
+    filter: brightness(0.75);
+    box-shadow: none;
 }
 
 hr {
@@ -240,4 +254,28 @@ hr {
     .answer-element {
         flex-direction: column;
     }
+}
+
+#centered-main-container {
+    animation: 1500ms cubic-bezier(0.165, 0.84, 0.44, 1) 0s 1 main-container-slide-in;
+}
+
+@keyframes main-container-slide-in {
+    from {
+        opacity: 0;
+        transform: translateY(-2em);
+        filter: blur(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+        filter: blur(0);
+    }
+}
+
+#mode-indicator {
+    opacity: 0;
+    margin-top: 2em;
+    transition: 500ms ease-in-out;
 }

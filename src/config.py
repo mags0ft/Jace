@@ -37,7 +37,7 @@ FINALISM_PHRASES: "list[str]" = [
 ]
 
 
-class Models(NamedTuple):
+class Models:  # pylint: disable=too-few-public-methods
     """
     This class keeps track of all supported models to allow for easy access
     across the codebase.
@@ -46,12 +46,14 @@ class Models(NamedTuple):
     proposing_model: str = "deepseek-r1:7b"
     review_models: "list[str]" = [
         "llama3.2:3b",
-        "gemma:2b",
+        "gemma3:4b",
         "mistral:7b",
     ]
 
+    diagram_model: str = "gemma3:4b"
 
-class Prompts(NamedTuple):
+
+class Prompts:  # pylint: disable=too-few-public-methods
     """
     Prompts used by Jace to query the LLMs in the council.
     """
@@ -87,3 +89,9 @@ Also consider mentioning possible pitfalls you learned about during problem \
 solving with the other members, but DO NOT mention the council or the \
 members themselves IN ANY CASE! Make the answer as short and helpful as \
 reasonably possible."""
+
+    diagram_creation: str = """The user is prompting you to create a visual \
+representation of data or a process in form of a diagram, flow chart or any \
+other element, what ever fits best. Return said result in Mermaid syntax. \
+Only return pure Mermaid code, NOTHING else. DO NOT write a preamble or \
+explanation, JUST return the code, NOTHING else."""

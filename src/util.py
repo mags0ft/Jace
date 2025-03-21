@@ -78,3 +78,20 @@ def create_logging_file_if_not_exists() -> None:
     if not os.path.isfile(LOG_PATH):
         with open(LOG_PATH, "x", encoding="utf-8"):
             pass
+
+
+def clean_from_artefacts(code: str):
+    """
+    Removes any code formatting artefacts from the returned answer to ensure
+    Mermaid can render it on the client-side.
+    """
+
+    res = ""
+
+    for line in code.splitlines(keepends=True):
+        if line.startswith("```") or line.endswith("```"):
+            continue
+
+        res += line
+
+    return res
