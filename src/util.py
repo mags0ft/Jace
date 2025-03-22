@@ -80,9 +80,9 @@ def create_logging_file_if_not_exists() -> None:
             pass
 
 
-def clean_from_artefacts(code: str):
+def clean_from_artifacts(code: str):
     """
-    Removes any code formatting artefacts from the returned answer to ensure
+    Removes any code formatting artifacts from the returned answer to ensure
     Mermaid can render it on the client-side.
     """
 
