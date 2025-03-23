@@ -3,6 +3,7 @@ This module contains some simple wrappers, utility functions and more.
 """
 
 import os
+import re
 from ollama import chat
 from ollama import ChatResponse
 
@@ -35,10 +36,7 @@ def remove_finalism(text: str) -> str:
     """
 
     for phrase in FINALISM_PHRASES:
-        text = text.replace(phrase, "")
-        text = text.replace(phrase.upper(), "")
-        text = text.replace(phrase.title(), "")
-        text = text.replace(phrase.capitalize(), "")
+        re.sub(phrase, "", text, flags=re.IGNORECASE)
 
     return text
 
