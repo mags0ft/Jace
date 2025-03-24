@@ -12,3 +12,5 @@ First, make sure ollama, python3 and `python-venv` is installed. Then...
 6. to run the server: `python3 ./src/server.py`
 
 Make sure you have all the models listed in `src/config.py` pulled.
+
+**Note**: The server-based web UI of Jace also supports the creation of diagrams. Just mention the words "diagram" or "chart" in your prompt to activate the diagram creation mode. If you do not wish to use this and want to deactivate said mode, add a "/nochart" anywhere in your prompt.
