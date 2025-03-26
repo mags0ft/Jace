@@ -2,11 +2,11 @@
 To change the behavior of Jace, modify the variables in this file.
 """
 
-# How many passes of review the council should perform before just pretending
-# like everyone is okay
 import os
 
 
+# How many passes of review the council should perform before just pretending
+# like everyone is okay
 MAX_PASSES = 6
 
 # How the termination of your Chain-of-thought model of choice looks like
