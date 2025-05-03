@@ -4,8 +4,8 @@ echo "Cloning Jace repository..."
 git clone https://github.com/mags0ft/Jace.git
 cd Jace
 
-echo "Creating venv..."
 if [ ! -d ".venv" ]; then
+    echo "Creating venv..."
     python3 -m venv .venv
 fi
 
@@ -28,5 +28,5 @@ do
     ollama pull $model
 done
 
-echo "Installation complete."
-exit 0
+echo "Installation complete. Running server."
+python3 ./src/server.py

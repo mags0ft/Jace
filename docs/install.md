@@ -1,5 +1,24 @@
 ## How to install and run it locally
 
+### Using the install script
+
+Jace now provides a simple script to install and run Jace locally. Just run:
+
+```bash
+# First, download the install script:
+curl -sSL https://raw.githubusercontent.com/mags0ft/Jace/main/install.sh > install.sh
+
+# Please read the install script instead of piping into bash:
+less install.sh
+
+# Finally:
+chmod +x install.sh && ./install.sh
+```
+
+**Note: This requires Bash. If you are on another platform like Windows, you may want to follow the manual installation steps below instead.**
+
+### Manual installation
+
 It's indeed super simple! Doing it on a Unix-based or Unix-agnostic system would be best, however.
 
 First, make sure ollama, python3 and `python-venv` is installed. Then...

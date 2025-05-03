@@ -6,7 +6,7 @@ Jace is a method I call "council of models" that makes several LLMs discuss with
 
 This makes you able to mix many different LLMs, helping to reduce hallucination and somewhat mitigating censorship.
 
-> Want to get started?
+> Want to get started? It's just three commands!
 > [How to install](./docs/install.md)
 
 ## How it works
