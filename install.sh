@@ -1,14 +1,11 @@
 #!/bin/bash
 
 echo "Cloning Jace repository..."
-git clone https://github.com/mags0ft/Jace.git
-cd Jace
+git clone https://github.com/mags0ft/Jace.git ./Jace
+cd ./Jace
 
-if [ ! -d ".venv" ]; then
-    echo "Creating venv..."
-    python3 -m venv .venv
-fi
-
+echo "Creating venv..."
+python3 -m venv .venv
 source ./.venv/bin/activate
 
 echo "Installing dependencies..."
