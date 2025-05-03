@@ -9,7 +9,6 @@ const IMAGE_URLS = {
     "llama3.2": "/static/images/models/llama.webp",
     "gemma3": "/static/images/models/gemma.webp",
     "mistral": "/static/images/models/mistral.webp",
-    "alibayram/erurollm-9b-instruct": "/static/images/models/eurollm.webp",
     "qwen3": "/static/images/models/qwen.webp",
 };
 
@@ -19,7 +18,6 @@ const MODEL_NAMES = {
     "llama3.2": "Llama (Meta)",
     "gemma3": "Gemma (Google)",
     "mistral": "Mistral",
-    "alibayram/erurollm-9b-instruct": "EuroLLM (EU)",
     "qwen3": "Qwen 3",
 }
 
