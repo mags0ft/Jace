@@ -34,7 +34,7 @@ class Models:  # pylint: disable=too-few-public-methods
     across the codebase.
     """
 
-    proposing_model: str = "deepseek-r1:7b"
+    proposing_model: str = "qwen3:8b"
     review_models: "list[str]" = [
         "llama3.2:3b",
         "gemma3:4b",
