@@ -63,7 +63,7 @@ function startCouncilSession(question = "") {
     } else {
         // Send prompt to the server via socket
         socket.emit("prompt_jace", {
-            prompt: prompt.replaceAll("/nochart", "")
+            prompt: prompt.replaceAll("/no_chart", "")
         });
     }
 
@@ -118,7 +118,7 @@ function mentionsDiagram(value) {
         "chart",
     ];
 
-    if (value.includes("/nochart")) return false;
+    if (value.includes("/no_chart")) return false;
 
     for (let keyword of keywords) {
         if (value.includes(keyword)) return true;
