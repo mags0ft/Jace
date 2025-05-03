@@ -8,7 +8,7 @@ from flask_socketio import SocketIO, emit
 from config import Models
 import config
 from council import consult_council_with_prompt, send_callback
-from util import clean_from_artefacts, prompt_model
+from util import clean_from_artifacts, prompt_model
 
 
 app = Flask(__name__)
@@ -54,7 +54,7 @@ def handle_incoming_diagram_request(req):
     def update_callback(new_message: dict["str", "str"]):
         emit("new_message", new_message)
 
-    diagram = clean_from_artefacts(
+    diagram = clean_from_artifacts(
         prompt_model(
             config.Models.diagram_model,
             [

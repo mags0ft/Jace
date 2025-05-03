@@ -11,6 +11,8 @@ First, make sure ollama, python3 and `python-venv` is installed. Then...
 5. install all dependencies: `pip install -r ./requirements.txt`
 6. to run the server: `python3 ./src/server.py`
 
+---
+
 Make sure you have all the models listed in `src/config.py` pulled.
 
 For example, those might be:
@@ -31,3 +33,7 @@ For instance, to pull the Qwen 3 model, you would run:
 ```
 ollama pull qwen3:8b
 ```
+
+--- 
+
+**Note**: The server-based web UI of Jace also supports the creation of diagrams. Just mention the words "diagram" or "chart" in your prompt to activate the diagram creation mode. If you do not wish to use this and want to deactivate said mode, add a "/nochart" anywhere in your prompt.

@@ -30,3 +30,7 @@ These are the (system) prompts used by Jace to make the "council of models"-proo
 > The council is fully satisfied with this solution. To finish up, summarize the solution and - if you deem this necessary - how you got to it.
 >
 > Also consider mentioning possible pitfalls you learned about during problem solving with the other members, but DO NOT mention the council or the members themselves IN ANY CASE! Make the answer as short and helpful as reasonably possible.
+
+## Diagram creation prompt:
+
+> The user is prompting you to create a visual representation of data or a process in form of a diagram, flow chart or any other element, what ever fits best. Return said result in Mermaid syntax. Only return pure Mermaid code, NOTHING else. DO NOT write a preamble or explanation, JUST return the code, NOTHING else.

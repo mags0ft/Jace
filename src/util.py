@@ -2,10 +2,17 @@
 This module contains some simple wrappers, utility functions and more.
 """
 
+import os
+import re
 from ollama import chat
 from ollama import ChatResponse
 
-from config import FINALISM_PHRASES, THINK_TERMINATOR
+from config import (
+    FINALISM_PHRASES,
+    THINK_TERMINATOR,
+    LOG_DIRECTORY_NAME,
+    LOG_PATH,
+)
 
 
 def remove_thinking_part(text: str) -> str:
@@ -29,10 +36,7 @@ def remove_finalism(text: str) -> str:
     """
 
     for phrase in FINALISM_PHRASES:
-        text = text.replace(phrase, "")
-        text = text.replace(phrase.upper(), "")
-        text = text.replace(phrase.title(), "")
-        text = text.replace(phrase.capitalize(), "")
+        re.sub(phrase, "", text, flags=re.IGNORECASE)
 
     return text
 
@@ -61,9 +65,22 @@ def prompt_model(
     return response_message_text.strip()
 
 
-def clean_from_artefacts(code: str):
+def create_logging_file_if_not_exists() -> None:
     """
-    Removes any code formatting artefacts from the returned answer to ensure
+    Creates a "logs" folder and a "log.txt" file if it does not exist yet.
+    """
+
+    if not os.path.isdir(LOG_DIRECTORY_NAME):
+        os.mkdir(LOG_DIRECTORY_NAME)
+
+    if not os.path.isfile(LOG_PATH):
+        with open(LOG_PATH, "x", encoding="utf-8"):
+            pass
+
+
+def clean_from_artifacts(code: str):
+    """
+    Removes any code formatting artifacts from the returned answer to ensure
     Mermaid can render it on the client-side.
     """
 

@@ -2,6 +2,9 @@
 To change the behavior of Jace, modify the variables in this file.
 """
 
+import os
+
+
 # How many passes of review the council should perform before just pretending
 # like everyone is okay
 MAX_PASSES = 6
@@ -14,6 +17,11 @@ APPROVAL_MESSAGE = "Fine, I approve"
 
 # Whether to print out additional logging info to stdout or a file.
 ENABLE_LOGGING_OUTPUT = True
+
+# Where to store the logs.
+LOG_DIRECTORY_NAME = "logs"
+LOG_FILE_NAME = "log.txt"
+LOG_PATH = os.path.join(LOG_DIRECTORY_NAME, LOG_FILE_NAME)
 
 # Phrases some models may tend to include in their reviewed answers - those
 # hint at the answer being a final, complete version of what the council is
