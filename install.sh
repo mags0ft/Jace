@@ -1,5 +1,9 @@
 #!/bin/bash
 
+echo "Cloning Jace repository..."
+git clone https://github.com/mags0ft/Jace.git
+cd Jace
+
 echo "Creating venv..."
 if [ ! -d ".venv" ]; then
     python3 -m venv .venv
