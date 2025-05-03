@@ -12,6 +12,7 @@ const IMAGE_URLS = {
     "gemma3:4b": "/static/images/models/gemma.webp",
     "mistral:7b": "/static/images/models/mistral.webp",
     "alibayram/erurollm-9b-instruct": "/static/images/models/eurollm.webp",
+    "qwen3:8b": "/static/images/models/qwen.webp",
 };
 
 // Human-readable versions of the model names
@@ -23,6 +24,7 @@ const MODEL_NAMES = {
     "gemma3:4b": "Gemma (Google)",
     "mistral:7b": "Mistral",
     "alibayram/erurollm-9b-instruct": "EuroLLM (EU)",
+    "qwen3:8b": "Qwen 3",
 }
 
 // All elements we want to address in the DOM
