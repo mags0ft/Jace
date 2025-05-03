@@ -5,26 +5,22 @@ This file contains all the client-side JavaScript code needed to provide a good 
 
 // All image files for the specific models
 const IMAGE_URLS = {
-    "deepseek-r1:7b": "/static/images/models/deepseek.webp",
-    "llama3.2:3b": "/static/images/models/llama.webp",
-    "llama3.2:1b": "/static/images/models/llama.webp",
-    "gemma:2b": "/static/images/models/gemma.webp",
-    "gemma3:4b": "/static/images/models/gemma.webp",
-    "mistral:7b": "/static/images/models/mistral.webp",
+    "deepseek-r1": "/static/images/models/deepseek.webp",
+    "llama3.2": "/static/images/models/llama.webp",
+    "gemma3": "/static/images/models/gemma.webp",
+    "mistral": "/static/images/models/mistral.webp",
     "alibayram/erurollm-9b-instruct": "/static/images/models/eurollm.webp",
-    "qwen3:8b": "/static/images/models/qwen.webp",
+    "qwen3": "/static/images/models/qwen.webp",
 };
 
 // Human-readable versions of the model names
 const MODEL_NAMES = {
-    "deepseek-r1:7b": "DeepSeek",
-    "llama3.2:3b": "Llama (Meta)",
-    "llama3.2:1b": "Llama (Meta)",
-    "gemma:2b": "Gemma (Google)",
-    "gemma3:4b": "Gemma (Google)",
-    "mistral:7b": "Mistral",
+    "deepseek-r1": "DeepSeek",
+    "llama3.2": "Llama (Meta)",
+    "gemma3": "Gemma (Google)",
+    "mistral": "Mistral",
     "alibayram/erurollm-9b-instruct": "EuroLLM (EU)",
-    "qwen3:8b": "Qwen 3",
+    "qwen3": "Qwen 3",
 }
 
 // All elements we want to address in the DOM
@@ -141,6 +137,15 @@ elements.promptInput.addEventListener("input", (e) => {
     }
 })
 
+function normalizeModelName(model_name) {
+    /*
+    This function normalizes the model name by removing everything that comes after
+    the colon, as anything after it only includes model size information.
+    */
+
+    return model_name.split(":")[0];
+}
+
 function createAnswerElement(resp) {
     /*
     This function creates an answer element from the template inside of index.html.
@@ -149,7 +154,7 @@ function createAnswerElement(resp) {
 
     const clone = elements.answerTemplate.content.cloneNode(true);
 
-    clone.querySelector("#message-model").innerText = MODEL_NAMES[resp.model];
+    clone.querySelector("#message-model").innerText = MODEL_NAMES[normalizeModelName(resp.model)];
 
     if (resp.type == "approval") {
         clone.querySelector("#message-text").innerText = "approves"
@@ -163,7 +168,7 @@ function createAnswerElement(resp) {
         clone.querySelector("#message-text").innerHTML = marked.parse(resp.text);
     }
 
-    clone.querySelector("#message-image").src = IMAGE_URLS[resp.model];
+    clone.querySelector("#message-image").src = IMAGE_URLS[normalizeModelName(resp.model)];
     clone.querySelector("#answer-element").style.backgroundColor = {
         "proposal": "rgb(250, 250, 250)",
         "diagram": "rgb(250, 250, 250)",
