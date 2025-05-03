@@ -12,3 +12,22 @@ First, make sure ollama, python3 and `python-venv` is installed. Then...
 6. to run the server: `python3 ./src/server.py`
 
 Make sure you have all the models listed in `src/config.py` pulled.
+
+For example, those might be:
+
+- `qwen3:8b`
+- `llama3.2:3b`
+- `gemma3:4b`
+- `mistral:7b`
+
+You can pull a model by running
+
+```
+ollama pull <model_name>
+```
+
+For instance, to pull the Qwen 3 model, you would run:
+
+```
+ollama pull qwen3:8b
+```
