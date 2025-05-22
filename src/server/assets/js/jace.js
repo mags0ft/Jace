@@ -110,6 +110,11 @@ document.addEventListener("keydown", (e) => {
     }
 })
 
+document.addEventListener("DOMContentLoaded", () => {
+    // Focus the prompt input when the page loads
+    elements.promptInput.focus();
+});
+
 function mentionsDiagram(value) {
     value = value.toLowerCase();
 
