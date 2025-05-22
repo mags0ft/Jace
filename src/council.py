@@ -19,10 +19,8 @@ def send_callback(
     Sends a callback to the client.
     """
 
-    if not callback:
-        return
-
-    callback({"model": model, "text": text, "type": type_, "final": final})
+    if callback:
+        callback({"model": model, "text": text, "type": type_, "final": final})
 
 
 def consult_council_with_prompt(

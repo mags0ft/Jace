@@ -18,8 +18,6 @@ if ENABLE_LOGGING_OUTPUT:
         "%(asctime)s - %(name)s - %(levelname)s - %(message)s"
     )
 
-    # handler = StreamHandler(stdout)
-
     create_logging_file_if_not_exists()
 
     handler = FileHandler("./logs/log.txt")

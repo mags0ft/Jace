@@ -2,9 +2,9 @@
 
 ![Jace showcase image](./docs/assets/showcase-image.png)
 
-Jace is a method I call "council of models" that makes several LLMs discuss with each other about a problem or prompt given by the user to reflect on different points of view. [Showcase video here](./docs/assets/showcase-small.webm).
+Jace is an implementation of a method I call "council of models" (CoM) that makes several LLMs discuss problems or prompts with each other to reflect on different standpoints. [Showcase video here](./docs/assets/showcase-small.webm).
 
-This makes you able to mix many different LLMs, helping to reduce hallucination and somewhat mitigating censorship.
+This makes you able to mix many different LLMs and get one final, merged answer at the end - helping to reduce hallucination and somewhat mitigating censorship.
 
 > Want to get started? It's just three commands!
 > [How to install](./docs/install.md)
