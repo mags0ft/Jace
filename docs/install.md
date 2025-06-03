@@ -15,7 +15,9 @@ less install.sh
 chmod +x install.sh && ./install.sh
 ```
 
-**Note: This requires Bash. If you are on another platform like Windows, you may want to follow the manual installation steps below instead.**
+**Note**: This requires Bash. If you are on another platform like Windows, you may need to follow the manual installation steps below instead.
+
+**Note**: Please make sure you have Ollama installed and at least 20 GB of free disk space. The installer will **automatically** pull the required default models for Jace from Ollama. **If you wish to use different models and have edited the Jace config, the installer might not pull the correct models. Please manually pull those instead.**
 
 ### Manual installation
 
