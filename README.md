@@ -11,7 +11,7 @@ This makes you able to mix many different LLMs and get one final, merged answer 
 
 ## How it works
 
-This project uses Ollama to run several models and query them with each other's ideas on how to solve the problem.
+This project uses the Ollama API to run several models at once and query them with each other's ideas on how to solve a given problem or fulfill a request.
 
 The basic steps for problem solving are as following:
 
