@@ -1,4 +1,10 @@
-# Jace
+<p align="center">
+    <img src="./src/server/assets/images/icon-small.png" alt="Jace Logo" width="128">
+</p>
+<h1 align="center">Jace</h1>
+<p align="center">
+    <i>Mix your favorite LLMs together with ease</i>
+</p>
 
 ![Jace showcase image](./docs/assets/showcase-image.png)
 
@@ -6,8 +12,10 @@ Jace is an implementation of a method I call "council of models" (CoM) that make
 
 This makes you able to mix many different LLMs and get one final, merged answer at the end - helping to reduce hallucination and somewhat mitigating censorship.
 
+> [!TIP]
 > Want to get started? It's just three commands!
-> [How to install](./docs/install.md)
+>
+> 👉 [How to install](./docs/install.md)
 
 ## How it works
 
