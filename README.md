@@ -25,7 +25,7 @@ The basic steps for problem solving are as following:
 
 1. A model chosen as the "proposing" one comes up with the first idea on how to solve the problem and tells it to the council.
 2. The other models in the council are asked what they think about the idea, proposing other ideas when necessary.
-3. Only if every review model writes out the words "Fine, I approve", the process finishes.
+3. Only if every review model writes out the words "\<approve\>", the process finishes.
 4. Lastly, the original "proposing" model summarizes the findings for the user.
 
 ## Prompts

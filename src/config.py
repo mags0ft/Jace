@@ -7,13 +7,13 @@ import os
 
 # How many passes of review the council should perform before just pretending
 # like everyone is okay
-MAX_PASSES = 6
+MAX_PASSES = 8
 
 # How the termination of your Chain-of-thought model of choice looks like
 THINK_TERMINATOR = "</think>"
 
 # What the reviewers shall say when there is no criticism to be made
-APPROVAL_MESSAGE = "Fine, I approve"
+APPROVAL_MESSAGE = "<approve>"
 
 # Whether to print out additional logging info to stdout or a file.
 ENABLE_LOGGING_OUTPUT = True
