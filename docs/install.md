@@ -15,9 +15,11 @@ less install.sh
 chmod +x install.sh && ./install.sh
 ```
 
-**Note**: This requires Bash. If you are on another platform like Windows, you may need to follow the manual installation steps below instead.
+> [!NOTE]
+> This requires Bash. If you are on another platform like Windows, you may need to follow the manual installation steps below instead.
 
-**Note**: Please make sure you have Ollama installed and at least 20 GB of free disk space. The installer will **automatically** pull the required default models for Jace from Ollama. **If you wish to use different models and have edited the Jace config, the installer might not pull the correct models. Please manually pull those instead.**
+> [!NOTE]
+> Please make sure you have Ollama installed and at least 20 GB of free disk space. The installer will **automatically** pull the required default models for Jace from Ollama. **If you wish to use different models and have edited the Jace config, the installer might not pull the correct models. Please manually pull those instead.**
 
 ### Manual installation
 
@@ -80,4 +82,5 @@ ollama pull qwen3:8b
 
 --- 
 
-**Note**: The server-based web UI of Jace also supports the creation of diagrams. Just mention the words "diagram" or "chart" in your prompt to activate the diagram creation mode. If you do not wish to use this and want to deactivate said mode, add a "/no_chart" anywhere in your prompt.
+> [!NOTE]
+> The server-based web UI of Jace also supports the creation of diagrams. Just mention the words "diagram" or "chart" in your prompt to activate the diagram creation mode. If you do not wish to use this and want to deactivate said mode, add a "/no_chart" anywhere in your prompt.
