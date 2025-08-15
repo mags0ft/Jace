@@ -8,9 +8,11 @@
 
 ![Jace showcase image](./docs/assets/showcase-image.png)
 
-Jace is an implementation of a method I call "council of models" (CoM) that makes several LLMs discuss problems or prompts with each other to reflect on different standpoints. [Showcase video here](./docs/assets/showcase-small.webm).
+Jace is my reference implementation of a method I call "**council of models**" (CoM) that makes several LLMs discuss problems or prompts with each other to reflect on different standpoints. [Showcase video here](./docs/assets/showcase-small.webm).
 
-This makes you able to mix many different LLMs and get one final, merged answer at the end - helping to reduce hallucination and somewhat mitigating censorship.
+This makes you able to **mix many different LLMs** and get one final, merged answer at the end - helping to reduce hallucination and somewhat mitigating censorship, no fancy modifications to the models needed at all.
+
+Jace also supports instantly generating diagrams as soon as you mention them using Mermaid. Just write something like "Make me a chat about ..." and watch the magic happen!
 
 > [!TIP]
 > Want to get started? It's just three commands!
