@@ -1,5 +1,5 @@
 <p align="center">
-    <img src="./src/server/assets/images/icon-small.png" alt="Jace Logo" width="128">
+    <img src="./src/server/assets/images/icon-small.webp" alt="Jace Logo" width="128">
 </p>
 <h1 align="center">Jace</h1>
 <p align="center">
