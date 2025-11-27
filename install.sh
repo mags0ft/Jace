@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# --- Downloading Jace ---
+# --- Download the repo ---
 echo "Cloning Jace repository..."
 git clone https://github.com/mags0ft/Jace.git ./Jace
 cd ./Jace
@@ -29,5 +29,4 @@ do
 done
 
 # --- Start the server ---
-echo "Installation complete. Running server."
-python3 ./src/server.py
+echo "Installation complete. You can now run the server using: python3 ./src/server.py"

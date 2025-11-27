@@ -70,12 +70,13 @@ def create_logging_file_if_not_exists() -> None:
     Creates a "logs" folder and a "log.txt" file if it does not exist yet.
     """
 
-    if not os.path.isdir(LOG_DIRECTORY_NAME):
-        os.mkdir(LOG_DIRECTORY_NAME)
+    os.makedirs(LOG_DIRECTORY_NAME, exist_ok=True)
 
-    if not os.path.isfile(LOG_PATH):
-        with open(LOG_PATH, "x", encoding="utf-8"):
-            pass
+    if os.path.isfile(LOG_PATH):
+        return
+
+    with open(LOG_PATH, "x", encoding="utf-8"):
+        pass
 
 
 def clean_from_artifacts(code: str):

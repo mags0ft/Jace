@@ -13,7 +13,7 @@ These are the (system) prompts used by Jace to make the "council of models"-proo
 >
 > Another member proposed the following solution. Please review said solution - don't hesitate to criticize - and, if applicable, propose changes.
 >
-> If you are okay with the solution, say the words "Fine, I approve" to the council. In that case, you don't need to give a full explanation again.
+> If you are okay with the solution, say the words "\<approve\>" to the council. In that case, you don't need to give a full explanation again.
 
 ## Post-review system prompts:
 
