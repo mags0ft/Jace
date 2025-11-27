@@ -66,6 +66,10 @@ For example, those might be:
 - `gemma3:4b`
 - `mistral:7b`
 
+> [!TIP]
+>
+> Jace runs best and fastest if all models fit into VRAM simultaneously. Consider using smaller models if you have less VRAM available. The above models use around 15-16 GB of VRAM at Q4_K_M quantization and small context sizes (around 8K).
+
 You can pull a model by running
 
 ```
@@ -77,7 +81,8 @@ For instance, to pull the Qwen 3 model, you would run:
 ```
 ollama pull qwen3:8b
 ```
-
 --- 
 
-**Note**: The server-based web UI of Jace also supports the creation of diagrams. Just mention the words "diagram" or "chart" in your prompt to activate the diagram creation mode. If you do not wish to use this and want to deactivate said mode, add a "/no_chart" anywhere in your prompt.
+> [!NOTE]
+> 
+> The server-based web UI of Jace also supports the creation of diagrams. Just mention the words "diagram" or "chart" in your prompt to activate the diagram creation mode. If you do not wish to use this and want to deactivate said mode, add a "/no_chart" anywhere in your prompt.

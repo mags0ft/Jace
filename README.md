@@ -6,9 +6,11 @@
     <i>Mix your favorite LLMs together with ease</i>
 </p>
 
-![Jace showcase image](./docs/assets/showcase-image.png)
-
 Jace is an implementation of a method I call "council of models" (CoM) that makes several LLMs discuss problems or prompts with each other to reflect on different standpoints. [Showcase video here](./docs/assets/showcase-small.webm).
+
+<p align="center">
+    <img src="./docs/assets/showcase-image.png" alt="Jace showcase image" width="512">
+</p>
 
 This makes you able to mix many different LLMs and get one final, merged answer at the end - helping to reduce hallucination and somewhat mitigating censorship.
 
