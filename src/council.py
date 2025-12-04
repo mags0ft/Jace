@@ -3,13 +3,14 @@ This file contains the actual problem-solving logic for interacting with the
 "council members".
 """
 
+from typing import Any
 from config import APPROVAL_MESSAGE, MAX_PASSES, Prompts
 from util import prompt_model, remove_finalism
 from log import logger
 
 
 def send_callback(
-    callback: "any" = None,
+    callback: Any = None,
     model: str = "",
     text: str = "",
     type_: str = "proposal",
@@ -27,7 +28,7 @@ def consult_council_with_prompt(
     prompt: str,
     proposal_model: str,
     reviewer_models: "list[str]",
-    callback: "any" = None,
+    callback: Any = None,
 ) -> str:
     """
     The main functionality of Jace - to consult the "council of models" with a
