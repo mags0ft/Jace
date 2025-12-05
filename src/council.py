@@ -27,7 +27,7 @@ def send_callback(
 def consult_council_with_prompt(
     prompt: str,
     proposal_model: str,
-    reviewer_models: "list[str]",
+    reviewer_models: list[str],
     callback: Any = None,
 ) -> str:
     """
@@ -48,9 +48,9 @@ def consult_council_with_prompt(
     passes_done: int = 0  # How many times the council has revised
 
     # Initialization of the variables used to run the council
-    criticisms: "list[str]" = []
+    criticisms: list[str] = []
     current_solution: str = ""
-    solution_finding_history: "list[dict[str, str]]" = []
+    solution_finding_history: list[dict[str, str]] = []
 
     while passes_done < MAX_PASSES:
         logger.info("pass #%s", passes_done + 1)

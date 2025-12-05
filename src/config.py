@@ -27,7 +27,7 @@ LOG_PATH = os.path.join(LOG_DIRECTORY_NAME, LOG_FILE_NAME)
 # hint at the answer being a final, complete version of what the council is
 # working on, even though it may not be done yet. As this might decept other
 # council member LLMs, it's best to remove such phrases from the proposals.
-FINALISM_PHRASES: "list[str]" = [
+FINALISM_PHRASES: list[str] = [
     "final thoughts",
     "final result",
     "final solution",
@@ -43,7 +43,7 @@ class Models:  # pylint: disable=too-few-public-methods
     """
 
     proposing_model: str = "qwen3:8b"
-    review_models: "list[str]" = [
+    review_models: list[str] = [
         "llama3.2:3b",
         "gemma3:4b",
         "mistral:7b",

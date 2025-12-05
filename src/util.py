@@ -43,7 +43,7 @@ def remove_finalism(text: str) -> str:
 
 def prompt_model(
     model_name: str,
-    prompts: "list[dict[str, str]]",
+    prompts: list[dict[str, str]],
     remove_thinking: bool = True,
 ) -> str:
     """
